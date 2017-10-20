@@ -50,6 +50,7 @@ public class Feeder {
         private final long numberOfTypes;
         private GigaSpace primaryProxy;
         private GigaSpace backupProxy;
+        private volatile boolean fallback;
         
         public FeederTask(long numberOfTypes, GigaSpace primaryProxy, GigaSpace backupProxy) {
             this.numberOfTypes = numberOfTypes;
@@ -60,7 +61,7 @@ public class Feeder {
         @Override
         public void run() {
             long time = System.currentTimeMillis();
-            feed(primaryProxy, new Data((counter.incrementAndGet() % numberOfTypes), "FEEDER " + Long.toString(time)));
+            feed(fallback ? backupProxy : primaryProxy, new Data((counter.incrementAndGet() % numberOfTypes), "FEEDER " + Long.toString(time)));
         }
         
         private void feed(GigaSpace gigaSpace, Data data) {
@@ -69,6 +70,7 @@ public class Feeder {
                 LOG.info("--- FEEDER WROTE " + data + " TO SPACE [" + gigaSpace.getName() + "]");
             } catch (Exception e) {
                 LOG.info(e.getMessage());
+                fallback = true;
                 feed(backupProxy, data);
             }
         }
