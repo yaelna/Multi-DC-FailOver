@@ -12,11 +12,11 @@
 ## Introduction
 
 The goal of this project is to demonstrate a failover of Data Center 1 in 'NY' zone by redirecting all write requests to XAP in Data Center 2 in 'LN' zone and bootstrapping DC1 from DC2 when it is up again.
-DC1 hosts 'source-space' statefull space with 2:0 partitioned cluster topology and replicates data to 'target-space' space in DC2 over WAN. 
+DC1 hosts 'source-space' stateful space with 2:0 partitioned cluster topology and replicates data to 'target-space' space in DC2 over WAN. 
 In other words 'master-slave' WAN gateway replication topology is used. DC1 is a master cluster and DC2 is a slave cluster. 
 After DC1 is down, DC2's space continues handling data requests. When DC1 is restarted,  'wan-bootstrap' application bootstraps it from DC2.  
 
-The projects includes:
+The project includes:
 - source and target space PUs
 - WAN gateway components
 - feeder, that writes data to the source space and if it is unreachable it starts writing data to the target space.
