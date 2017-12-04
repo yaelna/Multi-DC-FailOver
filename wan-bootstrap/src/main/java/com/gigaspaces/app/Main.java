@@ -52,9 +52,9 @@ public class Main {
         }
         
         SpaceReplicationManager srm = targetSpace.getReplicationManager();
-        GatewayTarget gatewayTarget = new GatewayTarget("NEWYORK");
+        GatewayTarget newYorkGatewayTarget = new GatewayTarget("NEWYORK");
         try {
-            srm.addGatewayTarget(gatewayTarget);
+            srm.addGatewayTarget(newYorkGatewayTarget);
             System.out.println("Bootstrapping 'source' space");
             BootstrapResult bootstrapResult = londonSinkSource.bootstrapFromGatewayAndWait(3600, TimeUnit.SECONDS);
             if (bootstrapResult.isSucceeded()) {
@@ -66,7 +66,7 @@ public class Main {
             System.err.println("Unexpected error occuried while bootstrapping NEWYORK space : " + e.getMessage());
             throw e;
         } finally {
-            srm.removeGatewayTarget(gatewayTarget.getName());
+            srm.removeGatewayTarget(newYorkGatewayTarget.getName());
         }
     }
 }

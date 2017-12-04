@@ -21,14 +21,14 @@
     
     <context:component-scan base-package="com.gigaspaces.app" />
       
-    <os-gateway:sink id="sink" local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups" local-space-url="jini://*/*/source-space?locators=${source.host}:4174" start-embedded-lus="false" requires-bootstrap="true">
+    <os-gateway:sink id="sink" local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups" local-space-url="jini://*/*/source-space?locators=172.17.0.2:4174" start-embedded-lus="false" requires-bootstrap="true">
         <os-gateway:sources>
             <os-gateway:source name="LONDON"/>
         </os-gateway:sources>
     </os-gateway:sink>
-    
-   <os-gateway:lookups id="gatewayLookups">
-        <os-gateway:lookup gateway-name="NEWYORK" host="${source.host}" discovery-port="4174"/>
-        <os-gateway:lookup gateway-name="LONDON" host="${target.host}" discovery-port="4174"/> 
+
+    <os-gateway:lookups id="gatewayLookups">
+        <os-gateway:lookup gateway-name="NEWYORK" host="172.17.0.2" discovery-port="4174" />
+        <os-gateway:lookup gateway-name="LONDON" host="172.17.0.3" discovery-port="4174" />
     </os-gateway:lookups>
 </beans>
