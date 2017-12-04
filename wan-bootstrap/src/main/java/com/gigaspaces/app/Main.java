@@ -65,8 +65,6 @@ public class Main {
         } catch(Exception e) {
             System.err.println("Unexpected error occuried while bootstrapping NEWYORK space : " + e.getMessage());
             throw e;
-        } finally {
-            srm.removeGatewayTarget(newYorkGatewayTarget.getName());
         }
     }
 }
