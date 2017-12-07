@@ -1,4 +1,4 @@
-# ITG-multiDC-failover
+# MultiDC-failover
 -----------------------------------------
 
 [_Introduction_](#introduction)
