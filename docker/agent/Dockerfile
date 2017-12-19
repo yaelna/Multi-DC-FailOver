@@ -15,15 +15,13 @@ RUN yum -y install wget subversion nc tar unzip
 RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 RUN yum -y install apache-maven
 
-ENV HERCULES_IP 192.168.10.50
-
 # Downloading and installing Java 7
-RUN wget http://$HERCULES_IP/javas/jdk-7u80-linux-x64.rpm -O /tmp/jdk-7-linux-x64.rpm
-RUN yum -y install /tmp/jdk-7-linux-x64.rpm
+RUN wget https://s3.amazonaws.com/gigaspaces-pro-files/jdk-7u80-linux-x64.rpm -O /tmp/jdk-7u80-linux-x64.rpm
+RUN yum -y install /tmp/jdk-7u80-linux-x64.rpm
 
 # Downloading and installing Java 8
-RUN wget http://$HERCULES_IP/javas/jdk-8u131-linux-x64.rpm -O /tmp/jdk-8-linux-x64.rpm
-RUN yum -y install /tmp/jdk-8-linux-x64.rpm
+RUN wget https://s3.amazonaws.com/gigaspaces-pro-files/jdk-8u151-linux-x64.rpm -O /tmp/jdk-8u151-linux-x64.rpm
+RUN yum -y install /tmp/jdk-8u151-linux-x64.rpm
 
 RUN yum -y install iptables
 
